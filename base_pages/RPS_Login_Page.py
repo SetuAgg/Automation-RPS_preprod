@@ -5,7 +5,7 @@ class RPS_Login_Page:
     textbox_password_id = "password"
     login_button_Xpath = '//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]'
     eye_patch_xpath = '//i[@class="fa fa-eye-slash"]'
-    profile_tab_xpath = '//span[@aria-label="automation"]'
+    profile_tab_xpath = '//span[@aria-label="Zeyan"]'
     logout_btn_xpath = '//button[@class="logout-btn"]'
     forgot_password_xpath = "//a[text()='Forgot Password?']"
     back_to_login_btn_xpath = "//a[text()='« Back to Login']"

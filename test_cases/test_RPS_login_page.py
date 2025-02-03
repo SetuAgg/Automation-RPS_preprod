@@ -9,9 +9,9 @@ from base_pages.RPS_Login_Page import RPS_Login_Page
 
 class Test01_RPS_Login_Page:
     page_url = 'https://auth-lxp-qa.stackroute.in/auth/realms/lxp-rps-preprod/protocol/openid-connect/auth?client_id=lxp-rps-client&redirect_uri=https%3A%2F%2Frpsapp-preprod.niit.com%3Flogin%3Dsuccess%26company_id%3D531&response_type=code&scope=openid+profile+email '
-    username = 'kapoor@mailinator.com'
+    username = 'zeyan@mailinator.com'
     password = 'Test@123'
-    invalid_username = 'kapoor1@mailinator.com'
+    invalid_username = 'zeyan12@mailinator.com'
     invalid_password = 'Test@1234'
     success_login_Xpath = '//div[@class="top-title dasboard-batch"]'
     unsuccessful_login_Xpath = '//span[@class="pf-c-form__helper-text pf-m-error required kc-feedback-text"]'
@@ -129,7 +129,15 @@ class Test01_RPS_Login_Page:
             allure.attach(message15, name="Forgot Password Screeen Visibility", attachment_type=AttachmentType.TEXT)
             assert False
         time.sleep(2)
-        # BACK TO LOG BUTTON
+        # FORGOT PASSWORD USERNAME LABEL
+        element15 = self.driver.find_element(By.XPATH,'//label[@class="pf-c-form__label pf-c-form__label-text"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element15)
+        time.sleep(2)
+        # FORGOT PASSWORD INFO TEXT
+        element16 = self.driver.find_element(By.XPATH,'//div[@id="kc-info-wrapper"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element16)
+        time.sleep(3)
+        # BACK TO LOG BUTTON CLICK
         element6 = self.driver.find_element(By.XPATH,"//a[text()='« Back to Login']")
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element6)
         time.sleep(2)
@@ -222,6 +230,71 @@ class Test01_RPS_Login_Page:
         allure.attach(self.driver.get_screenshot_as_png(), name="Forgot Password In-detail", attachment_type=AttachmentType.PNG)
         time.sleep(2)
         self.driver.close()
+
+    def test_login_creds(self,setup):
+        self.driver = setup
+        self.driver.get(self.page_url)
+        time.sleep(3)
+        self.driver.maximize_window()
+        time.sleep(3)
+        self.admin_lp = RPS_Login_Page(self.driver)
+        self.admin_lp.enter_username(self.username)
+        self.admin_lp.enter_password(self.password)
+        self.admin_lp.click_login_button()
+        time.sleep(3)
+        # SUCCESSFUL LOGIN ELEMENT
+        element1 = self.driver.find_element(By.XPATH,"//div[text()='Dashboard']")
+        self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element1)
+        time.sleep(2)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Login Success", attachment_type=AttachmentType.PNG)
+        message01 = "Successful Login Text i.e,'Dashboard' is visible and highlighted successfully.."
+        allure.attach(message01, name="Login Success Message", attachment_type=AttachmentType.TEXT)
+        time.sleep(2)
+        # PROFILE TAB VERIFICATION AND CLICK
+        element2 = self.driver.find_element(By.XPATH,'//span[@aria-label="Zeyan"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element2)
+        time.sleep(2)
+        self.admin_lp.click_profile_tab()
+        time.sleep(2)
+        # LOGOUT BUTTON VERIFICATION AND CLICK
+        element3 = self.driver.find_element(By.XPATH,'//button[@class="logout-btn"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element3)
+        time.sleep(2)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Profile Tab", attachment_type=AttachmentType.PNG)
+        message01 = "Profile Tab is visible and highlighted successfully.."
+        allure.attach(message01, name="Profile Tab", attachment_type=AttachmentType.TEXT)
+        self.admin_lp.click_logout_button()
+        time.sleep(2)
+        allure.attach(self.driver.get_screenshot_as_png(), name="LogOut", attachment_type=AttachmentType.PNG)
+        message01 = "Logout is successful.."
+        allure.attach(message01, name="LogOut", attachment_type=AttachmentType.TEXT)
+        time.sleep(3)
+        # INVALID LOGIN VERIFICATION
+        self.admin_lp.enter_username(self.invalid_username)
+        self.admin_lp.enter_password(self.invalid_password)
+        self.admin_lp.click_login_button()
+        time.sleep(2)
+        element4 = self.driver.find_element(By.XPATH,'//span[@class="pf-c-form__helper-text pf-m-error required kc-feedback-text"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element4)
+        time.sleep(2)
+        allure.attach(self.driver.get_screenshot_as_png(), name="Invalid_Login", attachment_type=AttachmentType.PNG)
+        message01 = "Invalid Login is verified and message is highlighted successfully.."
+        allure.attach(message01, name="Invalid_Login Message", attachment_type=AttachmentType.TEXT)
+        self.driver.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
