@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 class RPS_Dashboard_Page:
     textbox_username_id = "username"
     textbox_password_id = "password"
-    login_button_Xpath = '//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]'
+    login_button_Xpath = '//button[@class="sign-in-btn"]'
     dashboard_tab_xpath = "//a[text()='Dashboard']"
     programs_tab_xpath = "//a[text()='Programs']"
     sessions_tab_xpath = "//a[text()='Sessions']"
