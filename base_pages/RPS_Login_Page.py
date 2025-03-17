@@ -3,13 +3,13 @@ from selenium.webdriver.common.by import By
 class RPS_Login_Page:
     textbox_username_id = "username"
     textbox_password_id = "password"
-    login_button_Xpath = '//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]'
-    eye_patch_xpath = '//i[@class="fa fa-eye-slash"]'
+    login_button_Xpath = '//button[@class="sign-in-btn"]'
+    eye_patch_xpath = '//img[@id="toggle-password"]'
     profile_tab_xpath = '//span[@aria-label="Zeyan"]'
     logout_btn_xpath = '//button[@class="logout-btn"]'
-    forgot_password_xpath = "//a[text()='Forgot Password?']"
+    forgot_password_xpath = "//a[text()='FORGOT PASSWORD?']"
     back_to_login_btn_xpath = "//a[text()='« Back to Login']"
-    forgot_password_submit_btn = '//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]'
+    forgot_password_submit_btn = '//button[@class="sign-in-btn"]'
 
 
 

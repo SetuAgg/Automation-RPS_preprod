@@ -347,7 +347,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Programs_Tab Inside", attachment_type=AttachmentType.PNG)
         time.sleep(2)
-        # MY COURSES TAB CLICK AND ELEMENT VERIFICATION
+        # MY COURSES TAB CLICKS AND ELEMENT VERIFICATION
         element21 = self.driver.find_element(By.XPATH, "//a[text()='My Courses']")
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element21)
         time.sleep(2)
@@ -642,6 +642,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         self.admin_lp.click_dashboard_tab()
         time.sleep(2)
+        # CALENDER IMAGE VERIFICATION
         element87 = self.driver.find_element(By.XPATH, '//img[@alt="Calendar"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element87)
         time.sleep(2)
@@ -655,7 +656,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         self.admin_lp.click_dashboard_tab()
         time.sleep(2)
-        # LOGOUT FINAL
+        # PROFILE TAB VERIFICATION FINAL
         element79 = self.driver.find_element(By.XPATH,"//span[text()='Zeyan']")
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element79)
         time.sleep(2)
@@ -673,6 +674,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Profile Tab", attachment_type=AttachmentType.PNG)
         time.sleep(2)
+        # LEARNING POINT TAB VERIFICATION
         self.admin_lp.click_profile_tab()
         time.sleep(2)
         element82 = self.driver.find_element(By.XPATH, "//a[text()='Learning Points']")
@@ -685,6 +687,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Profile Tab", attachment_type=AttachmentType.PNG)
         time.sleep(2)
+        # CHANGE PASSWORD TAB VERIFICATION
         self.admin_lp.click_profile_tab()
         time.sleep(2)
         element84 = self.driver.find_element(By.XPATH, '//img[@alt="Change Password"]')
@@ -701,6 +704,7 @@ class Test02_RPS_Dashboard_Tab:
         time.sleep(2)
         self.admin_lp.click_profile_tab()
         time.sleep(2)
+        # SUCCESSFUL LOGOUT FINAL
         element86 = self.driver.find_element(By.XPATH, '//button[@class="logout-btn"]')
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element86)
         time.sleep(2)

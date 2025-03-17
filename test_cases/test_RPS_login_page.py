@@ -27,20 +27,20 @@ class Test01_RPS_Login_Page:
         self.admin_lp = RPS_Login_Page(self.driver)
         # TITLE VERIFICATION
         act_title = self.driver.title
-        exp_title = "Sign in to lxp-rps-preprod"
+        exp_title = "Sign in to Spark LMS"
         if act_title == exp_title:
             assert True
             allure.attach(self.driver.get_screenshot_as_png(), name="Page Title Visibility", attachment_type=AttachmentType.PNG)
-            message05 = "Title of page i.e, 'Sign in to lxp-rps-preprod' is visible successfully.."
+            message05 = "Title of page i.e, 'Sign in to Spark LMS' is visible successfully.."
             allure.attach(message05, name="Title Visibility Message", attachment_type=AttachmentType.TEXT)
         else:
             allure.attach(self.driver.get_screenshot_as_png(), name="Title Visibility", attachment_type=AttachmentType.PNG)
-            message06 = "Page Title i.e, 'Sign in to lxp-rps-preprod' is not visible.."
+            message06 = "Page Title i.e, 'Sign in to Spark LMS' is not visible.."
             allure.attach(message06, name="Title Visibility Message", attachment_type=AttachmentType.TEXT)
             assert False
         time.sleep(3)
         # HEADER TEXT VERIFICATION
-        element1 = self.driver.find_element(By.XPATH, '//header[@class="login-pf-header"]')
+        element1 = self.driver.find_element(By.XPATH, '//h2[@class="card-title"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element1)
         time.sleep(2)
         if element1.is_displayed():
@@ -54,10 +54,25 @@ class Test01_RPS_Login_Page:
             allure.attach(message08, name="Header Text Visibility Message", attachment_type=AttachmentType.TEXT)
             assert False
         time.sleep(3)
+        # TEXT BELOW HEADER TEXT
+        element82 = self.driver.find_element(By.XPATH,'//div[@class="info-box"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element82)
+        time.sleep(2)
+        if element82.is_displayed():
+            assert True
+            allure.attach(self.driver.get_screenshot_as_png(), name="Page Header Text Visibility", attachment_type=AttachmentType.PNG)
+            message07 = "Header i.e, 'Learner/Trainer Login' is visible and highlighted successfully.."
+            allure.attach(message07, name="Header Text Visibility Message", attachment_type=AttachmentType.TEXT)
+        else:
+            allure.attach(self.driver.get_screenshot_as_png(), name="Page Header Visibility", attachment_type=AttachmentType.PNG)
+            message08 = "Header i.e, 'Learner/Trainer Login' is not Visible and not highlighted.."
+            allure.attach(message08, name="Header Text Visibility Message", attachment_type=AttachmentType.TEXT)
+            assert False
+        time.sleep(2)
         # EYE PATCH VERIFICATION
         self.admin_lp = RPS_Login_Page(self.driver)
         self.admin_lp.enter_password(self.password)
-        element2 = self.driver.find_element(By.XPATH, '//i[@class="fa fa-eye-slash"]')
+        element2 = self.driver.find_element(By.XPATH, '//img[@id="toggle-password"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element2)
         time.sleep(2)
         if element2.is_displayed():
@@ -82,7 +97,7 @@ class Test01_RPS_Login_Page:
         allure.attach(message11, name="Eye Patch Visibility Message", attachment_type=AttachmentType.TEXT)
         time.sleep(2)
         # LOGIN BUTTON VISIBILITY
-        element3 = self.driver.find_element(By.XPATH, '//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]')
+        element3 = self.driver.find_element(By.XPATH, '//button[@class="sign-in-btn"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element3)
         time.sleep(2)
         if element3.is_displayed():
@@ -96,8 +111,38 @@ class Test01_RPS_Login_Page:
             allure.attach(message13, name="Login Button Visibility Message", attachment_type=AttachmentType.TEXT)
             assert False
         time.sleep(2)
+        # PROVIDER SESSION VISIBILITY
+        element84 = self.driver.find_element(By.XPATH,'//div[@class="provider-section"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element84)
+        time.sleep(2)
+        if element84.is_displayed():
+            assert True
+            allure.attach(self.driver.get_screenshot_as_png(), name="Provider Session Visibility", attachment_type=AttachmentType.PNG)
+            message12 = "Provider Session is visible and highlighted successfully.."
+            allure.attach(message12, name="Provider Session Visibility Message", attachment_type=AttachmentType.TEXT)
+        else:
+            allure.attach(self.driver.get_screenshot_as_png(), name="Provider Session Visibility", attachment_type=AttachmentType.PNG)
+            message13 = "Provider Session  is not visible and not highlighted.."
+            allure.attach(message13, name="Provider Session Visibility Message", attachment_type=AttachmentType.TEXT)
+            assert False
+        time.sleep(2)
+        # REMEMBER ME VISIBILITY
+        element83 = self.driver.find_element(By.XPATH,'//div[@class="checkbox"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element83)
+        time.sleep(2)
+        if element83.is_displayed():
+            assert True
+            allure.attach(self.driver.get_screenshot_as_png(), name="Remember Me Tab", attachment_type=AttachmentType.PNG)
+            message12 = "Remember Me Tab is visible and highlighted successfully.."
+            allure.attach(message12, name="Remember Me Tab Message", attachment_type=AttachmentType.TEXT)
+        else:
+            allure.attach(self.driver.get_screenshot_as_png(), name="Remember Me Tab", attachment_type=AttachmentType.PNG)
+            message13 = "Remember Me Tab is not visible and not highlighted.."
+            allure.attach(message13, name="Remember Me Tab Message", attachment_type=AttachmentType.TEXT)
+            assert False
+        time.sleep(2)
         # FORGOT PASSWORD TEXT VISIBILITY
-        element4 = self.driver.find_element(By.XPATH, "//a[text()='Forgot Password?']")
+        element4 = self.driver.find_element(By.XPATH, "//a[text()='FORGOT PASSWORD?']")
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element4)
         time.sleep(2)
         if element4.is_displayed():
@@ -115,7 +160,7 @@ class Test01_RPS_Login_Page:
         self.admin_lp.click_forgot_password()
         time.sleep(2)
         # FORGOT PASSWORD TEXT DIALOG SCREEN
-        element5 = self.driver.find_element(By.XPATH, '//div[@class="card-pf card-pf col-md-4 col-md-offset-2"]')
+        element5 = self.driver.find_element(By.XPATH, '//div[@class="form-content"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element5)
         time.sleep(2)
         if element5.is_displayed():
@@ -129,14 +174,18 @@ class Test01_RPS_Login_Page:
             allure.attach(message15, name="Forgot Password Screeen Visibility", attachment_type=AttachmentType.TEXT)
             assert False
         time.sleep(2)
-        # FORGOT PASSWORD USERNAME LABEL
-        element15 = self.driver.find_element(By.XPATH,'//label[@class="pf-c-form__label pf-c-form__label-text"]')
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element15)
+        # FORGOT PASSWORD HEAD
+        element80 = self.driver.find_element(By.XPATH,'//h2[@class="card-title"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element80)
         time.sleep(2)
         # FORGOT PASSWORD INFO TEXT
-        element16 = self.driver.find_element(By.XPATH,'//div[@id="kc-info-wrapper"]')
+        element16 = self.driver.find_element(By.XPATH,'//div[@class="info-box"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element16)
-        time.sleep(3)
+        time.sleep(2)
+        # ENTER FORGOT PASSWORD EMAIL
+        self.admin_lp = RPS_Login_Page(self.driver)
+        self.admin_lp.enter_username(self.username)
+        time.sleep(2)
         # BACK TO LOG BUTTON CLICK
         element6 = self.driver.find_element(By.XPATH,"//a[text()='« Back to Login']")
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element6)
@@ -144,10 +193,10 @@ class Test01_RPS_Login_Page:
         self.admin_lp.click_back_to_login()
         time.sleep(3)
         # LOGO VISIBILITY
-        element6 = self.driver.find_element(By.XPATH, '//div[@class="logo"]')
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element6)
+        element61 = self.driver.find_element(By.XPATH, '//div[@class="niit-logo"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element61)
         time.sleep(2)
-        if element6.is_displayed():
+        if element61.is_displayed():
             assert True
             allure.attach(self.driver.get_screenshot_as_png(), name="Logo Visibility", attachment_type=AttachmentType.PNG)
             message18 = "Logo is visible and highlighted successfully.."
@@ -159,9 +208,9 @@ class Test01_RPS_Login_Page:
             assert False
         time.sleep(2)
         # TEXT VISIBILITY
-        element7 = self.driver.find_element(By.XPATH, "//h1[text()='GET CERTIFIED IN THE']")
+        element7 = self.driver.find_element(By.XPATH, '//div[@class="cert-header"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element7)
-        time.sleep(3)
+        time.sleep(2)
         if element7.is_displayed():
             assert True
             allure.attach(self.driver.get_screenshot_as_png(), name="Welcome Text Visibility", attachment_type=AttachmentType.PNG)
@@ -172,60 +221,28 @@ class Test01_RPS_Login_Page:
             message21 = "Welcome text is not visible and not highlighted.."
             allure.attach(message21, name="Welcome text Visibility Message", attachment_type=AttachmentType.TEXT)
             assert False
-        # TEXT VISIBILITY
-        element8 = self.driver.find_element(By.XPATH, "//h4[text()='EVER-GROWING FIELD OF TECHNOLOGY']")
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element8)
-        time.sleep(3)
-        if element8.is_displayed():
-            assert True
-            allure.attach(self.driver.get_screenshot_as_png(), name="Welcome text Visibility", attachment_type=AttachmentType.PNG)
-            message22 = "Welcome text is visible and highlighted successfully.."
-            allure.attach(message22, name="Welcome text Visibility Message", attachment_type=AttachmentType.TEXT)
-        else:
-            allure.attach(self.driver.get_screenshot_as_png(), name="Welcome text Visibility", attachment_type=AttachmentType.PNG)
-            message23 = "Welcome text is not visible and not highlighted.."
-            allure.attach(message23, name="Welcome text Visibility Message", attachment_type=AttachmentType.TEXT)
-            assert False
         time.sleep(2)
-        # FOOTER VISIBILITY
-        element10 = self.driver.find_element(By.XPATH, '//div[@class="container footerBgClolro"]')
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element10)
-        time.sleep(3)
-        if element10.is_displayed():
-            assert True
-            allure.attach(self.driver.get_screenshot_as_png(), name="Footer Visibility", attachment_type=AttachmentType.PNG)
-            message24 = "Footer is visible and highlighted successfully.."
-            allure.attach(message24, name="Footer Visibility Message", attachment_type=AttachmentType.TEXT)
-        else:
-            allure.attach(self.driver.get_screenshot_as_png(), name="Footer Visibility", attachment_type=AttachmentType.PNG)
-            message25 = "Footer is not visible and not highlighted.."
-            allure.attach(message25, name="Footer Visibility Message", attachment_type=AttachmentType.TEXT)
-            assert False
-        time.sleep(3)
         # FOOTER TEXT VISIBILITY
-        element11 = self.driver.find_element(By.XPATH, "//p[text()='COPYRIGHT © NIIT ']")
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element11)
-        element12 = self.driver.find_element(By.XPATH,"//span[text()='2025']")
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element12)
-        element12 = self.driver.find_element(By.XPATH,"//p[text()='. ALL RIGHTS RESERVED.']")
-        self.driver.execute_script("arguments[0].style.border='5px solid red'", element12)
+        element9 = self.driver.find_element(By.XPATH, '//div[@class="footer-copyright"]')
+        self.driver.execute_script("arguments[0].style.border='5px solid red'", element9)
+        time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Footer Text Visibility", attachment_type=AttachmentType.PNG)
         message25 = "Footer Text is visible and highlighted successfully.."
         allure.attach(message25, name="Footer Visibility Message", attachment_type=AttachmentType.TEXT)
         time.sleep(2)
         # FORGOT PASSWORD IN-DETAIL
-        element15 = self.driver.find_element(By.XPATH, "//a[text()='Forgot Password?']")
+        element15 = self.driver.find_element(By.XPATH, "//a[text()='FORGOT PASSWORD?']")
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element15)
         time.sleep(2)
         self.admin_lp.click_forgot_password()
         time.sleep(2)
         self.admin_lp.enter_username(self.username)
-        element13 = self.driver.find_element(By.XPATH,'//input[@class="pf-c-button pf-m-primary pf-m-block btn-lg"]')
+        element13 = self.driver.find_element(By.XPATH,'//button[@class="sign-in-btn"]')
         self.driver.execute_script("arguments[0].style.border='5px solid blue'", element13)
         time.sleep(2)
         self.admin_lp.click_forgot_password_submit()
         time.sleep(2)
-        element14 = self.driver.find_element(By.XPATH,'//div[@class="alert-success pf-c-alert pf-m-inline pf-m-success"]')
+        element14 = self.driver.find_element(By.XPATH,'//div[@class="alert-success  pf-m-success"]')
         self.driver.execute_script("arguments[0].style.border='5px solid red'", element14)
         allure.attach(self.driver.get_screenshot_as_png(), name="Forgot Password In-detail", attachment_type=AttachmentType.PNG)
         time.sleep(2)
@@ -243,7 +260,7 @@ class Test01_RPS_Login_Page:
         self.admin_lp.click_login_button()
         time.sleep(3)
         # SUCCESSFUL LOGIN ELEMENT
-        element1 = self.driver.find_element(By.XPATH,"//div[text()='Dashboard']")
+        element1 = self.driver.find_element(By.XPATH,'//div[@class="container1"]')
         self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element1)
         time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Login Success", attachment_type=AttachmentType.PNG)
@@ -272,15 +289,19 @@ class Test01_RPS_Login_Page:
         # INVALID LOGIN VERIFICATION
         self.admin_lp.enter_username(self.invalid_username)
         self.admin_lp.enter_password(self.invalid_password)
+        time.sleep(2)
         self.admin_lp.click_login_button()
         time.sleep(2)
-        element4 = self.driver.find_element(By.XPATH,'//span[@class="pf-c-form__helper-text pf-m-error required kc-feedback-text"]')
+        element4 = self.driver.find_element(By.XPATH,'//span[@class="error-message"]')
         self.driver.execute_script("arguments[0].style.border='5px solid yellow'", element4)
         time.sleep(2)
         allure.attach(self.driver.get_screenshot_as_png(), name="Invalid_Login", attachment_type=AttachmentType.PNG)
         message01 = "Invalid Login is verified and message is highlighted successfully.."
         allure.attach(message01, name="Invalid_Login Message", attachment_type=AttachmentType.TEXT)
         self.driver.close()
+
+
+
 
 
 
